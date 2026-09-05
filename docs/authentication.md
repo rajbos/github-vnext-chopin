@@ -12,9 +12,9 @@ directly to its caller-supplied bearer token.
 Create one GitHub App for each deployment. Use these registration settings:
 
 ```text
-Homepage URL: <APP_ORIGIN>
-Callback URL: <APP_ORIGIN>/auth/github/callback
-Setup URL:    <APP_ORIGIN>/auth/github/setup
+Homepage URL:     <APP_ORIGIN>
+Redirect URL:     <APP_ORIGIN>/auth/github/callback
+Post-install URL: <APP_ORIGIN>/auth/github/setup
 ```
 
 - Leave **Expire user authorization tokens** enabled.
@@ -78,7 +78,7 @@ including state, the PKCE verifier, and an optional browser return path.
 
 `APP_ORIGIN` must be exactly one HTTP(S) origin: no credentials, path, query,
 fragment, or trailing slash. HTTPS is required except for loopback development,
-such as `http://127.0.0.1:8787`. Callback URLs are built only from this value,
+such as `http://127.0.0.1:8787`. Redirect URLs are built only from this value,
 never from incoming Host or forwarded headers.
 
 The complete variable reference and deployment procedures live in

@@ -99,14 +99,18 @@ The development path requires:
 Register these local URLs on the GitHub App:
 
 ```text
-Homepage:  http://127.0.0.1:8787
-Callback:  http://127.0.0.1:8787/auth/github/callback
-Setup URL: http://127.0.0.1:8787/auth/github/setup
+Homepage:         http://127.0.0.1:8787
+Redirect URL:     http://127.0.0.1:8787/auth/github/callback
+Post-install URL: http://127.0.0.1:8787/auth/github/setup
 ```
 
 Enable expiring user authorization tokens, disable OAuth during installation,
-disable webhooks, and grant read access to Checks, Commit statuses, Contents, and Pull requests. See [Authentication](docs/authentication.md) for the exact App
-settings and the additional permission needed for organization admission.
+disable webhooks, and grant read access to Checks, Commit statuses, Contents, and Pull requests. These are repository permissions. In the App's **General** tab,
+set **Redirect URL** exactly to `http://127.0.0.1:8787/auth/github/callback`.
+The homepage and post-install URLs do not replace the redirect URL; a mismatch causes
+GitHub's `redirect_uri is not associated with this application` error. See
+[Authentication](docs/authentication.md) for the exact App settings and the
+additional permission needed for organization admission.
 
 Install, configure, and start Chopin:
 
@@ -134,9 +138,6 @@ Ctrl-C stops the development supervisor. `bun run db:down` tears down the local
 Compose project. Set `AGENT=off` to prevent Planner turns and disable the
 background-job runner; this does not disable the `/mcp` endpoint used by external
 coding agents.
-
-# Fill in the GitHub App values and generated session key in .env.
-
 
 ## Collaborate with the Planner
 
