@@ -71,16 +71,20 @@ Callback URL: <APP_ORIGIN>/auth/github/callback
 Setup URL:    <APP_ORIGIN>/auth/github/setup
 ```
 
+
 Enable expiring user authorization tokens, leave OAuth during installation and
 device flow disabled, disable webhooks, and make the App installable on any
-account. The complete product uses these read-only repository permissions:
+account. Also confirm the GitHub App is installed on the repositories you
+intend to use; without installation Chopin cannot access those repositories.
+
+The complete product uses these read-only repository permissions (these are repository-scoped permissions set per installation):
 
 ```text
-Contents:        Read-only
-Pull requests:   Read-only
 Checks:          Read-only
 Commit statuses: Read-only
+Contents:        Read-only
 Metadata:        Read-only (automatic)
+Pull requests:   Read-only
 ```
 
 Organization admission additionally requires organization Members read access
@@ -107,7 +111,7 @@ the image.
 | `SESSION_ENCRYPTION_KEY`       | required            | Exactly 64 hexadecimal characters used for the encrypted OAuth attempt cookie, including its validated return path.                |
 | `SERVER_HOST`                  | `127.0.0.1`         | Source-process bind address. The image sets `0.0.0.0`.                                                                             |
 | `PORT`                         | `8787`              | Source-process HTTP and WebSocket port. The supplied image and health check expect internal port 8787.                             |
-| `MODEL`                        | `claude-sonnet-4.6` | Model requested for hosted agent sessions.                                                                                         |
+| `MODEL`                        | `claude-sonnet-5` | Model requested for hosted agent sessions.                                                                                         |
 | `AGENT`                        | on                  | Set exactly `off` to prevent hosted agent turns, disable the entire background-job runner, and avoid Copilot CLI startup.          |
 | `BACKGROUND_JOBS`              | on                  | Set exactly `off` to disable background job scheduling. `AGENT=off` disables the entire runner.                                    |
 | `WEB_RESEARCH`                 | on                  | Set exactly `off` to disable new public-web research while retaining durable requests, artifacts, and other jobs.                  |

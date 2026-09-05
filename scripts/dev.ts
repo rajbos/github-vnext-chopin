@@ -27,8 +27,25 @@ import type { Subprocess } from "bun";
 
 const ROOT = dirname(import.meta.dir);
 
-if (`bun@${Bun.version}` !== manifest.packageManager) {
-	console.error(`[dev] ${manifest.packageManager} is required; found bun@${Bun.version}`);
+/** Parses a `major.minor.patch` version string into comparable numbers. */
+function parseVersion(version: string): [number, number, number] {
+	const [major = 0, minor = 0, patch = 0] = version.split(".").map(Number);
+	return [major, minor, patch];
+}
+
+/** True when `version` is the same as or newer than `minimum`. */
+function isAtLeast(version: string, minimum: string): boolean {
+	const v = parseVersion(version);
+	const m = parseVersion(minimum);
+	for (let i = 0; i < 3; i++) {
+		if (v[i] !== m[i]) return v[i] > m[i];
+	}
+	return true;
+}
+
+const minimumBun = manifest.packageManager.replace(/^bun@/, "");
+if (!isAtLeast(Bun.version, minimumBun)) {
+	console.error(`[dev] bun@${minimumBun} or newer is required; found bun@${Bun.version}`);
 	process.exit(1);
 }
 

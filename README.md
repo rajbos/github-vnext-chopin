@@ -92,7 +92,7 @@ The development path requires:
 
 - Bun 1.3.2;
 - Docker Engine with Docker Compose, used for PostgreSQL;
-- a GitHub App owned by the deployment; and
+- a GitHub App owned by the deployment;
 - a GitHub account with push or administration access to a test repository and,
   to use the Planner, an active Copilot entitlement.
 
@@ -105,8 +105,7 @@ Setup URL: http://127.0.0.1:8787/auth/github/setup
 ```
 
 Enable expiring user authorization tokens, disable OAuth during installation,
-disable webhooks, and grant read access to Contents, Pull requests, Checks, and
-Commit statuses. See [Authentication](docs/authentication.md) for the exact App
+disable webhooks, and grant read access to Checks, Commit statuses, Contents, and Pull requests. See [Authentication](docs/authentication.md) for the exact App
 settings and the additional permission needed for organization admission.
 
 Install, configure, and start Chopin:
@@ -135,6 +134,9 @@ Ctrl-C stops the development supervisor. `bun run db:down` tears down the local
 Compose project. Set `AGENT=off` to prevent Planner turns and disable the
 background-job runner; this does not disable the `/mcp` endpoint used by external
 coding agents.
+
+# Fill in the GitHub App values and generated session key in .env.
+
 
 ## Collaborate with the Planner
 

@@ -39,8 +39,10 @@ bun run docker:up       # build and start app plus PostgreSQL locally
 bun run docker:down     # tear down the local Compose project
 ```
 
-The repository pins Bun 1.3.2. Keep the package metadata, Docker image, CI, and
-documentation synchronized when changing it.
+The repository pins a minimum Bun version of 1.3.2 (`package.json`
+`packageManager`, checked by `scripts/dev.ts`); newer Bun releases are
+accepted. Keep the package metadata, Docker image, CI, and documentation
+synchronized when changing the minimum.
 
 `bun run e2e` starts two disposable PostgreSQL services, migrates them, builds
 the client, starts applications on ports 8788 and 8789, and runs Chromium with

@@ -25,14 +25,14 @@ Setup URL:    <APP_ORIGIN>/auth/github/setup
 - Select **Any account** so personal accounts and organizations can install it.
 - Prefer **Only select repositories** while installing it.
 
-Repository permissions for the complete product are:
+Repository permissions for the complete product are (these are repository-scoped permissions set per installation):
 
 ```text
-Contents:        Read-only
-Pull requests:   Read-only
 Checks:          Read-only
 Commit statuses: Read-only
+Contents:        Read-only
 Metadata:        Read-only (automatic)
+Pull requests:   Read-only
 ```
 
 Contents backs file, tree, code-search, and commit-history tools. The other
@@ -118,10 +118,13 @@ organization names can be renamed, so update the lists when that happens.
 ## Authorization and installation
 
 Authorization and installation are separate GitHub App operations. A user may
-authorize the App without installing it. After sign-in, Chopin lists only the
-personal and organization installations that user can access and only the
-repositories selected for each installation. The repository picker links to
-the App installation page when access has not been installed or needs updating.
+authorize the App without installing it. Important: verify the GitHub App is
+installed on every repository you intend to use; without an installation for a
+repository, Chopin cannot access it (this step is commonly missed). After
+sign-in, Chopin lists only the personal and organization installations that
+user can access and only the repositories selected for each installation. The
+repository picker links to the App installation page when access has not been
+installed or needs updating.
 
 The picker loads every repository page in the background and keeps a validated
 snapshot for the lifetime of the browser tab. Stale snapshots are revalidated
